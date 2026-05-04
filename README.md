@@ -76,11 +76,11 @@ Tylko 5 bezpiecznych promptów zostało błędnie zablokowanych. To dobry wynik 
  
 **3. Stabilność formatu — 6 błędów na 160 promptów**
  
-Mimo few-shot promptingu i mechanizmu retry, ~3.75% promptów zakończyło się błędem formatu. To typowe zachowanie lokalnych modeli 8B — przy skomplikowanych lub długich promptach model czasem „wypada" z formatu JSON. W produkcyjnym systemie wymagałoby to osobnego klasyfikatora fallback albo modelu większego (70B+).
+Mimo few-shot promptingu i mechanizmu retry, ~3.75% promptów zakończyło się błędem formatu. To typowe zachowanie lokalnych modeli 8B — przy skomplikowanych lub długich promptach model czasem wypada z formatu JSON. W systemie produkcyjnym wymagałoby to osobnego klasyfikatora fallback albo większego modelu (70B+).
  
 **4. Co by poprawiło wyniki**
  
-Główny problem to recall na ukrytych atakach. Dwa naturalne kroki: fine-tuning na polskim syntetycznym zbiorze danych z przykładami właśnie tych trudnych wektorów, model o większej liczbie parametrów, który lepiej rozumie intencję za warstwą narracyjną. Warto też rozważyć klasyfikację dwuetapową — najpierw detekcja tematu, potem ocena intencji.
+Główny problem to recall na ukrytych atakach. Dwa naturalne kroki: (1) fine-tuning na polskim syntetycznym zbiorze danych z przykładami właśnie tych trudnych wektorów, (2) model o większej liczbie parametrów, który lepiej rozumie intencję za warstwą narracyjną. Warto też rozważyć klasyfikację dwuetapową — najpierw detekcja tematu, potem ocena intencji.
  
 ---
 
