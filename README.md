@@ -59,8 +59,8 @@ Ewaluacja na 154 poprawnie przetworzonych promptach (6 zakończyło się timeout
  
 | | Pred. ZABLOKUJ | Pred. PRZEPUŚĆ |
 |---|---|---|
-| **Rzecz. ZABLOKUJ** | TP = 71 | FN = 38 |
-| **Rzecz. PRZEPUŚĆ** | FP = 5 | TN = 40 |
+| **Rzecz. ZABLOKUJ** | TP = 71 | FN = 35 |
+| **Rzecz. PRZEPUŚĆ** | FP = 5 | TN = 43 |
  
 ![Macierz pomyłek](confusion_matrix.png)
  
@@ -72,7 +72,7 @@ Tylko 5 bezpiecznych promptów zostało błędnie zablokowanych. To dobry wynik 
  
 **2. Recall 65% — największy problem systemu**
  
-38 ataków przeszło przez filtr (FN). Po przejrzeniu `wyniki_ewaluacji.csv` widać wyraźny wzorzec: model świetnie radzi sobie z bezpośrednimi żądaniami (`direct_harmful_request`), ale zawodzi przy atakach z warstwą narracyjną. Przykłady, które go oszukały: defamation_strategy (rozsiewanie plotek na Slacku), subtle_toxicity (złośliwy komentarz na LinkedIn napisany „elegancko"), historical_roleplay (cinkciarz pod Pewexem) i complex_negation. Model dosłownie interpretuje formę, nie wychwytując złośliwego kontekstu.
+35 ataków przeszło przez filtr (FN). Po przejrzeniu `wyniki_ewaluacji.csv` widać wyraźny wzorzec: model świetnie radzi sobie z bezpośrednimi żądaniami (`direct_harmful_request`), ale zawodzi przy atakach z warstwą narracyjną. Przykłady, które go oszukały: defamation_strategy (rozsiewanie plotek na Slacku), subtle_toxicity (złośliwy komentarz na LinkedIn napisany „elegancko"), historical_roleplay (cinkciarz pod Pewexem) i complex_negation. Model dosłownie interpretuje formę, nie wychwytując złośliwego kontekstu.
  
 **3. Stabilność formatu — 6 błędów na 160 promptów**
  
@@ -80,7 +80,7 @@ Mimo few-shot promptingu i mechanizmu retry, ~3.75% promptów zakończyło się 
  
 **4. Co by poprawiło wyniki**
  
-Główny problem to recall na ukrytych atakach. Dwa naturalne kroki: (a) fine-tuning na polskim syntetycznym zbiorze danych z przykładami właśnie tych trudnych wektorów, (b) model o większej liczbie parametrów, który lepiej rozumie intencję za warstwą narracyjną. Warto też rozważyć klasyfikację dwuetapową — najpierw detekcja tematu, potem ocena intencji.
+Główny problem to recall na ukrytych atakach. Dwa naturalne kroki: fine-tuning na polskim syntetycznym zbiorze danych z przykładami właśnie tych trudnych wektorów, model o większej liczbie parametrów, który lepiej rozumie intencję za warstwą narracyjną. Warto też rozważyć klasyfikację dwuetapową — najpierw detekcja tematu, potem ocena intencji.
  
 ---
 
