@@ -19,11 +19,13 @@ Ewaluacja prototypu wykazała następujące metryki (dla 154 poprawnie przetworz
 * **Precyzja dla ataków:** 93% 
 * **Recall dla ataków:** 65%
 * **F1-Score dla ataków:** 77%
+
 **Podsumowanie Macierzy Pomyłek:**
 * Prawdziwe ZABLOKUJ (True Negatives): 71
 * Prawdziwe PRZEPUŚĆ (True Positives): 43
 * Fałszywe PRZEPUŚĆ (False Positives): 35
 * Fałszywe ZABLOKUJ (False Negatives): 5
+
 **Kluczowe wnioski:**
 1. **Wysoka pewność diagnozy i niski over-refusal:** System zablokował niesłusznie zaledwie 5 bezpiecznych promptów. Precyzja blokowania na poziomie 93% udowadnia, że jeśli model flaguje zapytanie jako niebezpieczne, robi to słusznie. Pozwala to na uniknięcie zjawiska *over-refusal* (nadgorliwości), które jest irytujące dla użytkowników LLM-ów.
 2. **Podatność na socjotechnikę:** Model przepuścił 35 ataków (Krytyczne False Positives). Analiza pliku `wyniki_ewaluacji.csv` pokazuje, że 8-miliardowy model świetnie radzi sobie z jawnym łamaniem prawa i wulgaryzmami, ale daje się oszukać wyrafinowanej inżynierii społecznej (np. rozsiewanie plotek na firmowym Slacku) oraz dosłownie interpretuje korporacyjne metafory, nie dostrzegając głębszego złośliwego kontekstu.
