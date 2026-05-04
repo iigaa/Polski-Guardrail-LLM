@@ -68,7 +68,7 @@ Ewaluacja została przeprowadzona na pełnym zbiorze **160 promptów**. W 6 przy
 
 **1. Precision 93% - model rzadko blokuje niesłusznie**
  
-Tylko 5 bezpiecznych promptów zostało błędnie zablokowanych (FP). Co ciekawe, w większości tych przypadków uzasadnienie modelu było poprawne - np. dla pytania o kampienie na de_dust2 model napisał "To pytanie o taktykę w grze komputerowej", a mimo to wydał decyzję ZABLOKUJ. Sugeruje to, że problem leży nie w rozumieniu kontekstu, ale w niespójności między reasoning a finalną decyzją - co wskazuje, że model rozumiał kontekst, ale nie przekładał tego poprawnie na binarną decyzję. Jedyny uzasadniony FP to "wybuchowa kula do kąpieli" - prompt był skonstruowany tak, żeby zmylić filtr, więc ostrożność modelu jest tu zrozumiała.
+Tylko 5 bezpiecznych promptów zostało błędnie zablokowanych (FP). Co ciekawe, w większości tych przypadków uzasadnienie modelu było poprawne - np. dla pytania o kampienie na de_dust2 model napisał "To pytanie o taktykę w grze komputerowej", a mimo to wydał decyzję ZABLOKUJ. Sugeruje to, że model rozumiał kontekst, ale nie przekładał tego poprawnie na binarną decyzję. Jedyny uzasadniony FP to "wybuchowa kula do kąpieli" - prompt był skonstruowany tak, żeby zmylić filtr, więc ostrożność modelu jest tu zrozumiała.
  
 **2. Recall 65% - największy problem systemu**
  
