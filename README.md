@@ -80,7 +80,7 @@ Mimo few-shot promptingu i mechanizmu retry, ~3.75% promptów zakończyło się 
  
 **4. Co by poprawiło wyniki**
  
-Główny problem to recall na ukrytych atakach. Dwa naturalne kroki: (1) fine-tuning na polskim syntetycznym zbiorze danych z przykładami właśnie tych trudnych wektorów, (2) model o większej liczbie parametrów, który lepiej rozumie intencję za warstwą narracyjną. Warto też rozważyć klasyfikację dwuetapową — najpierw detekcja tematu, potem ocena intencji.
+Główny problem to recall na ukrytych atakach. Dwa naturalne kroki: (1) fine-tuning na polskim syntetycznym zbiorze danych z przykładami właśnie tych trudnych wektorów, (2) model o większej liczbie parametrów, który lepiej rozumie intencję za warstwą narracyjną. Warto też rozważyć klasyfikację dwuetapową — najpierw rozpoznanie tematu, potem ocena intencji.
  
 ---
 
