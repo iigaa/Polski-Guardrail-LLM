@@ -72,7 +72,7 @@ Tylko 5 bezpiecznych promptów zostało błędnie zablokowanych. To dobry wynik 
  
 **2. Recall 65% — największy problem systemu**
  
-35 ataków przeszło przez filtr (FN). Po przejrzeniu `wyniki_ewaluacji.csv` widać wyraźny wzorzec: model świetnie radzi sobie z bezpośrednimi żądaniami (`direct_harmful_request`), ale zawodzi przy atakach z warstwą narracyjną. Przykłady, które go oszukały: defamation_strategy (rozsiewanie plotek na Slacku), subtle_toxicity (złośliwy komentarz na LinkedIn napisany „elegancko"), historical_roleplay (cinkciarz pod Pewexem) i complex_negation. Model dosłownie interpretuje formę, nie wychwytując złośliwego kontekstu.
+35 ataków przeszło przez filtr (FN). Po przejrzeniu `wyniki_ewaluacji.csv` widać wyraźny wzorzec: model świetnie radzi sobie z bezpośrednimi żądaniami (direct_harmful_request), ale zawodzi przy atakach z warstwą narracyjną. Przykłady, które go oszukały: defamation_strategy (rozsiewanie plotek na Slacku), subtle_toxicity (złośliwy komentarz na LinkedIn napisany „elegancko"), historical_roleplay (cinkciarz pod Pewexem) i complex_negation. Model dosłownie interpretuje formę, nie wychwytując złośliwego kontekstu.
  
 **3. Stabilność formatu — 6 błędów na 160 promptów**
  
