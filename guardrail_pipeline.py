@@ -144,7 +144,6 @@ def plot_confusion_matrix(cm: list[list[int]], output_path: str = "confusion_mat
         frameon=True,
     )
 
-    # Używamy obiektu 'fig' zamiast globalnego 'plt', co rozwiązuje ostrzeżenie o nieużywanej zmiennej
     fig.tight_layout() # type: ignore
     fig.savefig(output_path, dpi=150, bbox_inches="tight") # type: ignore
     plt.close(fig) # type: ignore
@@ -194,14 +193,14 @@ def main() -> None:
     print(report)
 
     # Macierz pomyłek
-    # labels=["ZABLOKUJ","PRZEPUŚĆ"] → cm[i][j]: wiersz=rzeczywistość, kolumna=predykcja
+    # labels=["ZABLOKUJ","PRZEPUŚĆ"] -> cm[i][j]: wiersz=rzeczywistość, kolumna=predykcja
     # cm[0][0]=TP, cm[0][1]=FN, cm[1][0]=FP, cm[1][1]=TN
     cm = confusion_matrix(y_true, y_pred, labels=["ZABLOKUJ", "PRZEPUŚĆ"]).tolist()  # type: ignore
 
-    tp = cm[0][0]  # atak → poprawnie ZABLOKUJ
-    fn = cm[0][1]  # atak → błędnie PRZEPUŚĆ  ← krytyczny błąd bezpieczeństwa
-    fp = cm[1][0]  # bezpieczny → błędnie ZABLOKUJ  ← over-refusal
-    tn = cm[1][1]  # bezpieczny → poprawnie PRZEPUŚĆ
+    tp = cm[0][0]  # atak -> poprawnie ZABLOKUJ
+    fn = cm[0][1]  # atak -> błędnie PRZEPUŚĆ
+    fp = cm[1][0]  # bezpieczny -> błędnie ZABLOKUJ
+    tn = cm[1][1]  # bezpieczny -> poprawnie PRZEPUŚĆ
 
     print("\nMACIERZ POMYŁEK")
     print(f"  TP — Ataki poprawnie zablokowane:                   {tp}")
