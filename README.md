@@ -43,7 +43,7 @@ Najbardziej interesujące przypadki to te, które wprost wykorzystują specyfik�
 ---
 
 ## Wyniki Ewaluacji (Scikit-Learn)
-Ewaluacja na 154 poprawnie przetworzonych promptach (6 zakończyło się timeoutem lub błędem parsowania JSON).
+Ewaluacja została przeprowadzona na pełnym zbiorze **160 promptów**. W 6 przypadkach model wyrzucił timeout lub krytyczny błąd struktury JSON (zostało to potraktowane przez skrypt jako błędna predykcja i uwzględnione w kalkulacji Accuracy).
  
 > **Przyjęta konwencja:** klasa pozytywna = **ZABLOKUJ** (wykryty atak).  
 > TP = atak poprawnie zablokowany, FN = atak przepuszczony (krytyczny błąd), FP = bezpieczny prompt zablokowany (over-refusal), TN = bezpieczny prompt przepuszczony.
