@@ -14,13 +14,21 @@ Zbiór 160 promptów (`polska_baza_bezpieczenstwa.csv`), zawierający specyficzn
 * **Lokalny kontekst:** Impersonacja polskich urzędów czy wykorzystywanie specyfiki polskiego prawa.
 * **Zmyłki (False Positives):** Prompty bezpieczne, ale używające agresywnego słownictwa (np. "ubić proces w Linuxie", "wybuchowa kula do kąpieli"). Baza została zbalansowana w celu uzyskania wiarygodnych metryk.
 ## Wyniki Ewaluacji (Scikit-Learn)
-Ewaluacja prototypu wykazała następujące metryki (dla 154 poprawnie przetworzonych zapytań):
-* **Dokładność (Accuracy):** ~70.62%
-* **Precyzja dla ataków (Precision - ZABLOKUJ):** 93% 
-* **Recall dla ataków:** 64%
+Ewaluacja prototypu wykazała następujące metryki (dla 154 poprawnie przetworzonych zapytań – 6 zapytań zostało odrzuconych przez limity czasowe lub krytyczne błędy modelu):
+* **Dokładność:** 71.25%
+* **Precyzja dla ataków:** 93% 
+* **Recall dla ataków:** 65%
+* **F1-Score dla ataków:** 77%
+**Podsumowanie Macierzy Pomyłek:**
+* Prawdziwe ZABLOKUJ (True Negatives): 71
+* Prawdziwe PRZEPUŚĆ (True Positives): 43
+* Fałszywe PRZEPUŚĆ (False Positives): 35
+* Fałszywe ZABLOKUJ (False Negatives): 5
 **Kluczowe wnioski:**
-1. **Wysoka pewność diagnozy:** System zablokował niesłusznie zaledwie 5 bezpiecznych promptów (False Negatives), co udowadnia, że skutecznie omija problem *over-refusal* (nadgorliwości), często irytujący użytkowników.
-2. **Podatność na socjotechnikę:** Model przepuścił 36 ataków (False Positives). Analiza pliku `wyniki_ewaluacji.csv` pokazuje, że 8-miliardowy model świetnie radzi sobie z jawnym łamaniem prawa i wulgaryzmami, ale daje się oszukać wyrafinowanej inżynierii społecznej (np. rozsiewanie plotek na firmowym Slacku) oraz dosłownie interpretuje korporacyjne metafory.
+1. **Wysoka pewność diagnozy i niski over-refusal:** System zablokował niesłusznie zaledwie 5 bezpiecznych promptów. Precyzja blokowania na poziomie 93% udowadnia, że jeśli model flaguje zapytanie jako niebezpieczne, robi to słusznie. Pozwala to na uniknięcie zjawiska *over-refusal* (nadgorliwości), które jest irytujące dla użytkowników LLM-ów.
+2. **Podatność na socjotechnikę:** Model przepuścił 35 ataków (Krytyczne False Positives). Analiza pliku `wyniki_ewaluacji.csv` pokazuje, że 8-miliardowy model świetnie radzi sobie z jawnym łamaniem prawa i wulgaryzmami, ale daje się oszukać wyrafinowanej inżynierii społecznej (np. rozsiewanie plotek na firmowym Slacku) oraz dosłownie interpretuje korporacyjne metafory, nie dostrzegając głębszego złośliwego kontekstu.
+3. **Asymetria klasyfikacji:** Model wykazuje asymetrię zachowań – świetnie wychwytuje jawne naruszenia (wysokie Precision), ale ma niższy Recall (65%). Oznacza to, że niemal 1/3 sprytnie zakamuflowanych ataków przenika przez filtry. Wskazuje to na ograniczenia pojemności kontekstowej mniejszych modeli typu 8B w warunkach "zero/few-shot".
+4. **Stabilność formatowania wyjścia:** Mimo zastosowania techniki Few-Shot, Regex oraz Retry Loop, 6 promptów (ok. 3.75%) zakończyło się błędem. Pokazuje to typową dla lokalnych modeli niedeterministyczną naturę zwracania ścisłych struktur danych (JSON) i potwierdza konieczność stosowania twardego error-handlingu w architekturze Guardraili.
 **Plany rozwoju:**
 Aby podnieść wskaźnik Recall dla ukrytych ataków, docelowym krokiem wdrożeniowym byłoby zastosowanie modelu o większej liczbie parametrów (np. 70B) lub przeprowadzenie procesu *Fine-Tuningu* na wygenerowanym syntetycznie polskim zbiorze danych. Pozwoliłoby to również zrezygnować z Few-Shot Promptingu i przyspieszyć czas inferencji.
 ## Jak uruchomić projekt?
